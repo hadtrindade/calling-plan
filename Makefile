@@ -15,10 +15,10 @@ install:
 	pip install -e .['dev']
 
 test:
-	pytest tests/ -v --cov=military-call
+	pytest tests/ -v --cov=military_call
 
 flask:
-	export FLASK_APP=military-call/app.py
+	export FLASK_APP=military_call/app.py
 	export FLASK_ENV=development
 	flask run
 
