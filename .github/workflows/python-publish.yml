@@ -2,7 +2,7 @@ name: Python application
 defaults:
   run:
     shell: bash
-    working-directory: ./military-call
+    working-directory: .
 
 on:
   push:
