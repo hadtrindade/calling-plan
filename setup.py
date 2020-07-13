@@ -7,7 +7,7 @@ def read(filename):
 
 
 setup(
-    name="military-call",
+    name="military_call",
     version="0.1.0", #major, minor, patch
     description="plano de chamada para militares",
     packeges=find_packages(exclude=['.venv','old-program','tests']),
