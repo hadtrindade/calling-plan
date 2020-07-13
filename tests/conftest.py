@@ -1,5 +1,5 @@
 import pytest
-from military-call.app import create_app
+from military_call.app import create_app
 
 @pytest.fixture(scope="module")
 def app():
