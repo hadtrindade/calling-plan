@@ -1,5 +1,5 @@
 from flask import Flask
-from chico_delivery.ext import site
+from military_call.ext import site
 
 def create_app():
     """
