@@ -1,4 +1,4 @@
-# Military Call
+# Calling Plan
 
-## Este App tem a missão de realizar o chamamento dos militares para o aquartelamento e controle de chegada.
+## App para realização do plano de chamada e controle de chegada de militares ao aquartelamento.
 
