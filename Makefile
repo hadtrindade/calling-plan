@@ -10,15 +10,9 @@ clean:
 	rm -rf docs/_build
 	pip install -e .['dev'] --upgrade --no-cache
 
-
-install:
-	pip install -e .['dev']
-
 test:
-	pytest tests/ -v --cov=military_call
+	pytest tests/ -v --cov=calling_plan
 
-flask:
-	export FLASK_APP=military_call/app.py
-	export FLASK_ENV=development
-	flask run
+django-run:
+	python manage.py runserver
 
