@@ -30,6 +30,7 @@ DEBUG = config("DEBUG", cast=bool)
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS", cast=Csv())
 
+AUTH_USER_MODEL = "core.User"
 
 # Application definition
 
@@ -40,6 +41,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'calling_plan.pages',
+    'calling_plan.core',
+    'calling_plan.users',
 ]
 
 MIDDLEWARE = [
@@ -52,7 +57,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-#configuração debug-toolbar
+# configuração debug-toolbar
 INTERNAL_IPS = config('INTERNAL_IPS', cast=Csv(), default='127.0.0.1')
 
 if DEBUG:
@@ -132,3 +137,10 @@ STATIC_ROOT = join(BASE_DIR, "staticfiles")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = join(BASE_DIR, "mediafiles")
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "login/"
+LOGIN_URL = "login/"
+
