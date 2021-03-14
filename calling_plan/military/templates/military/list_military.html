@@ -25,7 +25,7 @@
                 <td>{{ fields.area.descricao }}</td>
                 <td>{{ fields.telefone }}</td>
                 <td>
-                    <a href="" class="btn btn-primary btn-sm" title="Detalhes">
+                    <a href="{% url "military:details-military" fields.id %}" class="btn btn-primary btn-sm" title="Detalhes">
                         <i class="fa fa-pencil" aria-hidden="true">Detalhes</i>
                     </a>
                  

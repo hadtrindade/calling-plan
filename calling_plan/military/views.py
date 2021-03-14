@@ -93,7 +93,9 @@ class PostoGraduacaoCreate(CreateView):
 
 def list_military(request):
 
-    content_fields = Militares.objects.all().select_related("graduacao","area","subunidade")
+    content_fields = Militares.objects.all().select_related(
+        "graduacao", "area", "subunidade"
+    )
     field_names = [
         "Posto/Graduação",
         "Nome",
@@ -111,6 +113,21 @@ def list_military(request):
 
     return render(
         request, template_name="military/list_military.html", context=context
+    )
+
+
+def details_military(request, pk):
+    print(pk)
+    content_fields = Militares.objects.select_related(
+        "graduacao", "area", "subunidade"
+    ).get(id=pk)
+
+    context = {
+        "fields": content_fields,
+    }
+
+    return render(
+        request, template_name="military/list_military_details.html", context=context
     )
 
 

@@ -1,0 +1,75 @@
+{% extends  'pages/base.html' %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="container pt-5">
+    
+    <h1>Militar</h1>
+    <hr>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>Post/Grad</th>
+                <th>Nome</th>
+                <th>Identidade</th>
+                <th>Subunidade</th>
+                <th>Operacional</th>
+                <th>Chamador</th>
+            </tr>     
+            <tr>
+                <td>{{ fields.graduacao }}</td>
+                <td>{{ fields.nome }}</td>
+                <td>{{ fields.identidade }}</td>
+                <td>{{ fields.subunidade }}</td>
+                {% if fields.operacional %}
+                    <td>Sim</td>
+                {% else %}
+                    <td>Não</td>
+                {% endif %}
+                {% if fields.chamador %}
+                    <td>Sim</td>
+                {% else %}
+                    <td>Não</td>
+                {% endif %}
+                
+            </tr>
+            <tr>
+                <th>Telefone</th>
+                <th>Telegram</th>
+                <th>Whatsapp</th>
+                <th>Telefone Familia</th>
+            </tr>
+            <tr>
+                <td>{{ fields.telefone }}</td>
+                <td>{{ fields.telefone_telegram }}</td>
+                <td>{{ fields.telefone_whatsapp }}</td>
+                <td>{{ fields.telefone_familia }}</td>
+            </tr>
+            <tr>
+                <th>Area</th>
+                <th>Cep</th>
+                <th>Rua</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>Estado</th>
+            </tr>
+            <tr>
+                <td>{{ fields.area }}</td>
+                <td>{{ fields.cep }}</td>
+                <td>{{ fields.rua }}</td>
+                <td>{{ fields.bairro }}</td>
+                <td>{{ fields.cidade }}</td>
+                <td>{{ fields.estado }}</td>
+            </tr>
+            
+        </table>
+            <a href="{% url "military:list-military" %}" class="btn btn-primary btn-sm" title="Voltar">
+                        <i class="fa fa-trash" aria-hidden="true">Voltar</i>
+                    </a>
+    </div>
+</div>
+{% endblock body %}
+
