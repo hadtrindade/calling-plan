@@ -26,46 +26,56 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
             <ul class="navbar-nav mr-auto">
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
                 <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Chamar</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                 <a class="nav-link" href="#">Controle</a>
                 </li>
                 <li class="nav-item">
                 <a class="nav-link" href="#">Relatório de Acionamento</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'military:list-military' %}">Relatório de Militares</a>
+                </li>
+                {% if user.is_staff %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
-                        Militares
+                        Cadastro
                     </a>
                     <div class="dropdown-menu bg-dark border-light" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item text-light" href="{% url 'core:register' %}">Cadastro</a>
-                        <a class="dropdown-item text-light" href="#">Relatório de Militares</a>
+                        <a class="dropdown-item text-light" href="{% url 'military:add-military' %}">Cadastro de Militar</a>
+                        <a class="dropdown-item text-light" href="{% url 'military:add-graduation' %}">Cadastro de Posto/Gradução</a>
+                        <a class="dropdown-item text-light" href="{% url 'military:add-subunit' %}">Cadastro de Subunidade</a>
+                        <a class="dropdown-item text-light" href="{% url 'military:add-area' %}">Cadastro de Area</a>
                     </div>
                 </li>
+                {% endif %}
+            {% endif %}
             </ul>
+            
             <ul class="navbar-nav">
                 {% if user.is_authenticated %}
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                             data-toggle="dropdown" aria-expanded="false">
-                            {{ user.first_name }}teste
+                            {{ user.first_name }}
                         </a>
                         <div class="dropdown-menu  dropdown-menu-right bg-dark border-light" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item text-light" href="#">Dashboard</a>
-                            <a class="dropdown-item text-light" href="#">Perfil</a>
+                            <a class="dropdown-item text-light" href="{% url "pages:home" %}">Dashboard</a>
                             <div class="dropdown-divider"></div>
                             <div class="dropdown-item">
-                                <a class="btn btn-danger" href="#">Sair</a>
+                                <a class="btn btn-danger" href="{% url "core:logout" %}">Sair</a>
                             </div>
                         </div>
                     </li>
             </ul>
-            {% else %}
-                <a class="btn btn-light my-2 my-sm-0" href="">Entrar</a>
-        {% endif %}
+                {% endif %}
         </div> 
 </nav>
 {% endblock nav %}
