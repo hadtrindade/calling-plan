@@ -1,0 +1,43 @@
+{% extends  'pages/base.html' %}
+{% load static %}
+
+
+{% block body %}
+
+<div class="container pt-5">
+    
+    <h1>{{view_name}}</h1>
+    <hr>
+
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                {% for field_name in field_names %}
+                    <th>{{field_name}}</th>
+                {% endfor %}
+            </tr>
+        
+            {% for fields in fields_list %}
+            <tr>
+                {% for field in fields.values%}
+                    <td>{{ field }}</td>
+                {% endfor %}
+                <td>
+                    <a href="" class="btn btn-warning btn-sm" title="Editar">
+                        <i class="fa fa-pencil" aria-hidden="true">Editar</i>
+                    </a>
+                    <a href="" class="btn btn-danger btn-sm" title="Excluir">
+                        <i class="fa fa-trash" aria-hidden="true">Excluir</i>
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">Nenhuma subunidade registrada.</td>
+            </tr>
+            {% endfor %}
+        
+        </table>
+    </div>
+</div>
+{% endblock body %}
