@@ -1,0 +1,28 @@
+{% extends  'pages/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block title %} Plano de Chamada - Cadastro Usuário {% endblock title %}
+
+
+{% block body %}
+
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
+            <div class="page-header pt-5">
+                <h3 class="text-center">Casdastro de Usuário<h3>
+            </div>
+            <form action="" method="POST" class="row g-3 mt-2 pb-2">
+                {% csrf_token %}
+                {{ forms|crispy }}
+
+                <div class="col-12">
+                    <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+                </div>
+            </form>            
+        </div>
+    </div>
+</div>
+{% endblock body %}

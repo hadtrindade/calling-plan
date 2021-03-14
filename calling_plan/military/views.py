@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.views.generic.edit import CreateView
-from django.views.generic.list import ListView
 from .models import Militares, Area, SubUnidade, PostoGraduacao
 from django.urls import reverse_lazy
 
@@ -25,7 +24,7 @@ class MilitaryCreate(CreateView):
         "cep",
         "area",
     ]
-    template_name = "military/form.html"
+    template_name = "military/form_military.html"
     success_url = reverse_lazy("military:list-military")
 
     def get_context_data(self, *args, **kwargs):
@@ -94,9 +93,7 @@ class PostoGraduacaoCreate(CreateView):
 
 def list_military(request):
 
-    content_fields = Militares.objects.values(
-        "graduacao", "nome", "subunidade", "area", "telefone"
-    )
+    content_fields = Militares.objects.all().select_related("graduacao","area","subunidade")
     field_names = [
         "Posto/Graduação",
         "Nome",

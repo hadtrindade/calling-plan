@@ -19,7 +19,7 @@ class Area(models.Model):
     )
 
     def __str__(self):
-        return f"{self.area} - {self.descricao}"
+        return f"{self.area}"
 
 
 class SubUnidade(models.Model):
@@ -27,7 +27,7 @@ class SubUnidade(models.Model):
     sigla = models.CharField(max_length=10)
 
     def __str__(self):
-        return f"{self.sigla} - {self.nome}"
+        return f"{self.sigla}"
 
 
 class PostoGraduacao(models.Model):
@@ -35,7 +35,7 @@ class PostoGraduacao(models.Model):
     sigla = models.CharField(max_length=10, unique=True)
 
     def __str__(self):
-        return f"{self.sigla} - {self.nome}"
+        return f"{self.sigla}"
 
 
 class Militares(models.Model):
@@ -44,11 +44,10 @@ class Militares(models.Model):
     nome = models.CharField(max_length=200)
     graduacao = models.ForeignKey(
         PostoGraduacao,
-        verbose_name=_("Posto/Graduação"),
         on_delete=models.PROTECT,
     )
     subunidade = models.ForeignKey(
-        SubUnidade, verbose_name=_("Subunidade"), on_delete=models.PROTECT
+        SubUnidade, on_delete=models.PROTECT
     )
     operacional = models.BooleanField(verbose_name=_("Operacional"))
     telefone = models.CharField(max_length=20)
@@ -68,9 +67,9 @@ class Militares(models.Model):
     estado = models.CharField(max_length=100, verbose_name="UF")
     cep = models.IntegerField()
     area = models.ForeignKey(
-        Area, verbose_name=_("Área"), on_delete=models.PROTECT
+        Area, on_delete=models.PROTECT
     )
     data_insercao = models.DateField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.nome} - {self.graduation}"
+        return f" {self.graduacao} - {self.nome}"

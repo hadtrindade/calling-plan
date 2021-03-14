@@ -11,8 +11,13 @@ clean:
 	pip install -e .['dev'] --upgrade --no-cache
 
 test:
-	pytest tests/ -v --cov=calling_plan
+	pipenv run pytest -s --cov=calling_plan
 
 django-run:
 	python manage.py runserver
 
+black:
+	black -l79 .
+
+shell:
+	python manage.py shell_plus

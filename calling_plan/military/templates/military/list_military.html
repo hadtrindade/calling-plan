@@ -6,7 +6,7 @@
 
 <div class="container pt-5">
     
-    <h1>{{view_name}}</h1>
+    <h1>Militares</h1>
     <hr>
 
     <div class="table-responsive">
@@ -19,9 +19,11 @@
         
             {% for fields in fields_list %}
             <tr>
-                {% for field in fields.values%}
-                    <td>{{ field }}</td>
-                {% endfor %}
+                <td>{{ fields.graduacao.sigla }}</td>
+                <td>{{ fields.nome|upper }}</td>
+                <td>{{ fields.subunidade.sigla }}</td>
+                <td>{{ fields.area.descricao }}</td>
+                <td>{{ fields.telefone }}</td>
                 <td>
                     <a href="" class="btn btn-primary btn-sm" title="Detalhes">
                         <i class="fa fa-pencil" aria-hidden="true">Detalhes</i>
