@@ -11,13 +11,12 @@ def unauthenticated_user(func):
             return redirect("pages:home")
         else:
             return func(request, *args, **kwargs)
+
     return wraper_func
 
 
 def allowed_users(allowed_roles=[]):
-
     def decorator(func):
-
         def wraper_func(request, *args, **kwargs):
             group = None
             if request.user.groups.exists():
@@ -28,6 +27,7 @@ def allowed_users(allowed_roles=[]):
                 return HttpResponse("Acesso Negado")
 
         return wraper_func
+
     return decorator
 
 
@@ -46,4 +46,3 @@ def admin_only(func):
             return HttpResponse("Acesso Negado")
 
     return wraper_func
-

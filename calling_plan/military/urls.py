@@ -6,6 +6,8 @@ from .views import (
     PostoGraduacaoCreate,
     list_military,
     details_military,
+    edit_military,
+    delete_military,
     list_subunit,
     list_graduation,
     list_area,
@@ -27,4 +29,6 @@ urlpatterns = [
     path("list-graduation/", list_graduation, name="list-graduation"),
     path("list-area/", list_area, name="list-area"),
     path("details-military/<str:pk>/", details_military, name="details-military"),
+    path("edit-military/<str:pk>/", edit_military, name="edit-military"),
+    path("delete-military/<str:pk>/", delete_military, name="delete-military"),
 ]

@@ -27,3 +27,62 @@
     </div>
 </div>
 {% endblock body %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function(){
+        var SPMaskBehavior = function (val) {
+        return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+        spOptions = {
+            onKeyPress: function(val, e, field, options) {
+            field.mask(SPMaskBehavior.apply({}, arguments), options);
+            }
+        };
+
+        $('#id_telefone').mask(SPMaskBehavior, spOptions);
+        $('#id_telefone_telegram').mask(SPMaskBehavior, spOptions);
+        $('#id_telefone_whatsapp').mask(SPMaskBehavior, spOptions);
+        $('#id_telefone_familia').mask(SPMaskBehavior, spOptions);
+        $('#id_cep').mask('00000-000');
+        $('#id_identidade').mask('000.000.000-00', {reverse: true});
+    });
+</script>
+
+
+<script>
+    const cep = document.querySelector("#id_cep")
+
+    const showData = (result) =>{
+        const dict_cep = {
+            id_cep: result['cep'],
+            id_rua: result['logradouro'],
+            id_bairro: result['bairro'],
+            id_cidade: result['localidade'],
+            id_estado: result["uf"]
+        }
+        for(const field in dict_cep){
+            if(document.querySelector("#"+field)){
+                document.querySelector("#"+field).value = dict_cep[field]
+            }
+        }
+    }
+
+    cep.addEventListener("blur",(e)=>{
+        let search =  cep.value.replace("-","")
+        const options = {
+            method: "GET",
+            mode: "cors",
+            cache: "default"
+        }
+    fetch(`http://viacep.com.br/ws/${search}/json/`,options)
+    .then(response =>{ response.json()
+        .then(data => showData(data))
+
+    })
+    .catch(e => console.log("Error "+ e,message))
+    })
+
+</script>
+
+{% endblock scripts %}
