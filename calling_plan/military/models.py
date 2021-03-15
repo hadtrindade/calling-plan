@@ -40,15 +40,13 @@ class PostoGraduacao(models.Model):
 
 class Militares(models.Model):
 
-    identidade = models.CharField(max_length=11)
+    identidade = models.CharField(max_length=14)
     nome = models.CharField(max_length=200)
     graduacao = models.ForeignKey(
         PostoGraduacao,
         on_delete=models.PROTECT,
     )
-    subunidade = models.ForeignKey(
-        SubUnidade, on_delete=models.PROTECT
-    )
+    subunidade = models.ForeignKey(SubUnidade, on_delete=models.PROTECT)
     operacional = models.BooleanField(verbose_name=_("Operacional"))
     telefone = models.CharField(max_length=20)
     telefone_familia = models.CharField(
@@ -65,10 +63,8 @@ class Militares(models.Model):
     bairro = models.CharField(max_length=100)
     cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=100, verbose_name="UF")
-    cep = models.IntegerField()
-    area = models.ForeignKey(
-        Area, on_delete=models.PROTECT
-    )
+    cep = models.CharField(max_length=10)
+    area = models.ForeignKey(Area, on_delete=models.PROTECT)
     data_insercao = models.DateField(auto_now_add=True)
 
     def __str__(self):

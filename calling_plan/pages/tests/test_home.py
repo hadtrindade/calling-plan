@@ -12,7 +12,7 @@ def resp(client: Client):
 
 
 def _resp(client):
-    return client.get(reverse('pages:home'))
+    return client.get(reverse("pages:home"))
 
 
 @pytest.fixture
@@ -33,5 +33,3 @@ def test_profile_not_logged_user(resp):
 
 def test_profile_status_code(resp_with_user):
     assert 200 == resp_with_user.status_code
-
-

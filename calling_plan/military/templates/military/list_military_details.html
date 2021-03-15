@@ -1,4 +1,4 @@
-{% extends  'pages/base.html' %}
+{% extends  'military/form.html' %}
 {% load static %}
 
 
@@ -22,7 +22,7 @@
             <tr>
                 <td>{{ fields.graduacao }}</td>
                 <td>{{ fields.nome }}</td>
-                <td>{{ fields.identidade }}</td>
+                <td id="id_identidade">{{ fields.identidade }}</td>
                 <td>{{ fields.subunidade }}</td>
                 {% if fields.operacional %}
                     <td>Sim</td>
@@ -43,10 +43,10 @@
                 <th>Telefone Familia</th>
             </tr>
             <tr>
-                <td>{{ fields.telefone }}</td>
-                <td>{{ fields.telefone_telegram }}</td>
-                <td>{{ fields.telefone_whatsapp }}</td>
-                <td>{{ fields.telefone_familia }}</td>
+                <td id="id_telefone">{{ fields.telefone }}</td>
+                <td id="id_telefone_telegram">{{ fields.telefone_telegram }}</td>
+                <td id="id_telefone_whatsapp">{{ fields.telefone_whatsapp }}</td>
+                <td id="id_telefone_familia">{{ fields.telefone_familia }}</td>
             </tr>
             <tr>
                 <th>Area</th>
@@ -58,7 +58,7 @@
             </tr>
             <tr>
                 <td>{{ fields.area }}</td>
-                <td>{{ fields.cep }}</td>
+                <td id="id_cep">{{ fields.cep }}</td>
                 <td>{{ fields.rua }}</td>
                 <td>{{ fields.bairro }}</td>
                 <td>{{ fields.cidade }}</td>

@@ -1,29 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
 from .models import Militares, Area, SubUnidade, PostoGraduacao
 from django.urls import reverse_lazy
+from .forms import MilitaryForm
 
 
 class MilitaryCreate(CreateView):
     model = Militares
-    fields = [
-        "identidade",
-        "nome",
-        "graduacao",
-        "subunidade",
-        "operacional",
-        "telefone",
-        "telefone_familia",
-        "telefone_telegram",
-        "telefone_whatsapp",
-        "chamador",
-        "rua",
-        "bairro",
-        "cidade",
-        "estado",
-        "cep",
-        "area",
-    ]
+    form_class = MilitaryForm
+
     template_name = "military/form_military.html"
     success_url = reverse_lazy("military:list-military")
 
@@ -117,7 +102,7 @@ def list_military(request):
 
 
 def details_military(request, pk):
-    print(pk)
+
     content_fields = Militares.objects.select_related(
         "graduacao", "area", "subunidade"
     ).get(id=pk)
@@ -128,6 +113,46 @@ def details_military(request, pk):
 
     return render(
         request, template_name="military/list_military_details.html", context=context
+    )
+
+
+def edit_military(request, pk):
+
+    military = Militares.objects.select_related(
+        "graduacao", "area", "subunidade"
+    ).get(id=pk)
+    form = MilitaryForm(instance=military)
+    if request.method == "POST":
+        form = MilitaryForm(request.POST, instance=military)
+        if form.is_valid():
+            form.save()
+            return redirect("military:list-military")
+    
+    context = {
+        "form": form,
+    }
+
+    return render(
+        request, template_name="military/edit_military.html", context=context
+    )
+
+
+def delete_military(request, pk):
+
+    military = Militares.objects.select_related(
+        "graduacao", "area", "subunidade"
+    ).get(id=pk)
+    form = MilitaryForm(instance=military)
+
+    if request.method == "POST":
+        military.delete()
+        return redirect("military:list-military")
+    context = {
+        "form": form,
+    }
+
+    return render(
+        request, template_name="military/delete_military.html", context=context
     )
 
 
