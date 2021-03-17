@@ -1,11 +1,11 @@
 from django import forms
-from .models import Militares
+from .models import Military
 
 
 class MilitaryForm(forms.ModelForm):
 
     class Meta:
-        model = Militares
+        model = Military
         fields = '__all__'
 
         widgets = {

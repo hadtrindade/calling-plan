@@ -22,7 +22,7 @@ class Area(models.Model):
         return f"{self.area}"
 
 
-class SubUnidade(models.Model):
+class SubUnit(models.Model):
     nome = models.CharField(max_length=100)
     sigla = models.CharField(max_length=10)
 
@@ -30,7 +30,7 @@ class SubUnidade(models.Model):
         return f"{self.sigla}"
 
 
-class PostoGraduacao(models.Model):
+class Graduation(models.Model):
     nome = models.CharField(max_length=20, unique=True)
     sigla = models.CharField(max_length=10, unique=True)
 
@@ -38,15 +38,15 @@ class PostoGraduacao(models.Model):
         return f"{self.sigla}"
 
 
-class Militares(models.Model):
+class Military(models.Model):
 
     identidade = models.CharField(max_length=14)
     nome = models.CharField(max_length=200)
     graduacao = models.ForeignKey(
-        PostoGraduacao,
+        Graduation,
         on_delete=models.PROTECT,
     )
-    subunidade = models.ForeignKey(SubUnidade, on_delete=models.PROTECT)
+    subunidade = models.ForeignKey(SubUnit, on_delete=models.PROTECT)
     operacional = models.BooleanField(verbose_name=_("Operacional"))
     telefone = models.CharField(max_length=20)
     telefone_familia = models.CharField(

@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView
-from .models import Militares, Area, SubUnidade, PostoGraduacao
+from .models import Military, Area, SubUnit, Graduation
 from django.urls import reverse_lazy
 from .forms import MilitaryForm
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 
 
+@method_decorator(login_required(login_url="core:login"), name='dispatch')
 class MilitaryCreate(CreateView):
-    model = Militares
+    model = Military
     form_class = MilitaryForm
 
     template_name = "military/form_military.html"
@@ -23,6 +26,7 @@ class MilitaryCreate(CreateView):
         return context
 
 
+@method_decorator(login_required(login_url="core:login"), name='dispatch')
 class AreaCreate(CreateView):
 
     model = Area
@@ -41,9 +45,10 @@ class AreaCreate(CreateView):
         return context
 
 
-class SubUnidadeCreate(CreateView):
+@method_decorator(login_required(login_url="core:login"), name='dispatch')
+class SubUnitCreate(CreateView):
 
-    model = SubUnidade
+    model = SubUnit
     fields = ["nome", "sigla"]
     template_name = "military/form.html"
     success_url = reverse_lazy("military:list-subunit")
@@ -59,8 +64,9 @@ class SubUnidadeCreate(CreateView):
         return context
 
 
-class PostoGraduacaoCreate(CreateView):
-    model = PostoGraduacao
+@method_decorator(login_required(login_url="core:login"), name='dispatch')
+class GraduationCreate(CreateView):
+    model = Graduation
     fields = ["nome", "sigla"]
     template_name = "military/form.html"
     success_url = reverse_lazy("military:list-graduation")
@@ -76,9 +82,10 @@ class PostoGraduacaoCreate(CreateView):
         return context
 
 
+@login_required(login_url="core:login")
 def list_military(request):
 
-    content_fields = Militares.objects.all().select_related(
+    content_fields = Military.objects.all().select_related(
         "graduacao", "area", "subunidade"
     )
     field_names = [
@@ -101,9 +108,10 @@ def list_military(request):
     )
 
 
+@login_required(login_url="core:login")
 def details_military(request, pk):
 
-    content_fields = Militares.objects.select_related(
+    content_fields = Military.objects.select_related(
         "graduacao", "area", "subunidade"
     ).get(id=pk)
 
@@ -116,9 +124,10 @@ def details_military(request, pk):
     )
 
 
+@login_required(login_url="core:login")
 def edit_military(request, pk):
 
-    military = Militares.objects.select_related(
+    military = Military.objects.select_related(
         "graduacao", "area", "subunidade"
     ).get(id=pk)
     form = MilitaryForm(instance=military)
@@ -127,19 +136,21 @@ def edit_military(request, pk):
         if form.is_valid():
             form.save()
             return redirect("military:list-military")
-    
+
     context = {
         "form": form,
+        "titulo": "Editar Militar"
     }
 
     return render(
-        request, template_name="military/edit_military.html", context=context
+        request, template_name="military/form_military.html", context=context
     )
 
 
+@login_required(login_url="core:login")
 def delete_military(request, pk):
 
-    military = Militares.objects.select_related(
+    military = Military.objects.select_related(
         "graduacao", "area", "subunidade"
     ).get(id=pk)
     form = MilitaryForm(instance=military)
@@ -156,9 +167,10 @@ def delete_military(request, pk):
     )
 
 
+@login_required(login_url="core:login")
 def list_subunit(request):
 
-    data = SubUnidade.objects.values("nome", "sigla")
+    data = SubUnit.objects.values("nome", "sigla")
     field_names = ["Nome", "Acronimo", "Editar/Excluir"]
     context = {
         "field_names": field_names,
@@ -169,9 +181,10 @@ def list_subunit(request):
     return render(request, template_name="military/list.html", context=context)
 
 
+@login_required(login_url="core:login")
 def list_graduation(request):
 
-    data = PostoGraduacao.objects.values("nome", "sigla")
+    data = Graduation.objects.values("nome", "sigla")
     field_names = ["Nome", "Acronimo", "Editar/Excluir"]
     context = {
         "field_names": field_names,
@@ -182,6 +195,7 @@ def list_graduation(request):
     return render(request, template_name="military/list.html", context=context)
 
 
+@login_required(login_url="core:login")
 def list_area(request):
 
     data = Area.objects.values("descricao", "area")
