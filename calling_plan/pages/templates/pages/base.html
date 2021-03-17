@@ -53,6 +53,7 @@
                         Cadastro
                     </a>
                     <div class="dropdown-menu bg-dark border-light" aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item text-light" href="{% url 'core:register' %}">Usuário</a>
                         <a class="dropdown-item text-light" href="{% url 'military:add-military' %}">Cadastro de Militar</a>
                         <a class="dropdown-item text-light" href="{% url 'military:add-graduation' %}">Cadastro de Posto/Gradução</a>
                         <a class="dropdown-item text-light" href="{% url 'military:add-subunit' %}">Cadastro de Subunidade</a>
@@ -87,7 +88,13 @@
 {% block body %}{% endblock body %}
 
 {% block scripts %}{% endblock scripts %}
-    
+
+
+{%  block footer %}
+
 {% include 'pages/footer.html' %}
+
+{%  endblock footer %}
+
 </body>
 </html>
