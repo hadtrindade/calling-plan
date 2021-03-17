@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 from decouple import config, Csv
 from os.path import join
+from dj_database_url import parse
+from functools import partial
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -91,11 +93,12 @@ WSGI_APPLICATION = "calling_plan.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+default_db_url = join(f"sqlite:///{BASE_DIR}", "db.sqlite3")
+parse_database = partial(parse, conn_max_age=600)
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
-    }
+    "default": config(
+        "DATABASE_URL", default=default_db_url, cast=parse_database
+    )
 }
 
 
@@ -142,6 +145,44 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = join(BASE_DIR, "mediafiles")
 
 CRISPY_TEMPLATE_PACK = "bootstrap4"
+
+COLLECTFAST_ENABLED = False
+
+AWS_ACCESS_KEY_ID = config("AWS_ACCESS_KEY_ID", default=None)
+
+if AWS_ACCESS_KEY_ID:
+    AWS_SECRET_ACCESS_KEY = config("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = config("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_OBJECT_PARAMETERS = {
+        "CacheControl": "max-age=86400",
+    }
+    AWS_PRELOAD_METADATA = True
+    AWS_AUTO_CREATE_BUCKET = False
+    AWS_QUERYSTRING_AUTH = True
+    AWS_S3_CUSTON_DOMAIN = None
+    AWS_DEFAULT_ACL = "private"
+    COLLECTFAST_ENABLED = True
+    # static assets
+    COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
+    STATICFILES_STORAGE = "s3_folder_storage.s3.StaticStorage"
+    STATIC_S3_PATH = "static"
+    STATIC_ROOT = f"/{STATIC_S3_PATH}/"
+    STATIC_URL = (
+        f"//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{STATIC_S3_PATH}/"
+    )
+    ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
+
+    # UPLOAD MEDIA FOLDER
+    DEFAULT_FILE_STORAGE = "s3_folder_storage.s3.DefaultStorage"
+    DEFAULT_S3_PATH = "media"
+    MEDIA_ROOT = f"/{DEFAULT_S3_PATH}/"
+    MEDIA_URL = (
+        f"//s3.amazonaws.com/{AWS_STORAGE_BUCKET_NAME}/{DEFAULT_S3_PATH}/"
+    )
+
+    INSTALLED_APPS.append("s3_folder_storage")
+    INSTALLED_APPS.append("storages")
+
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"

@@ -1,33 +1,61 @@
-{% extends  'pages/base.html' %}
+{% extends  'military/form.html' %}
 {% load static %}
 
 {% load crispy_forms_tags %}
 {% block title %} Plano de Chamada - Login {% endblock title %}
 
+{% block nav %}{% endblock nav %}
+
 {% block body %}
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
-            <div class="page-header pt-5">
-                <h1 class="text-center">Login</h1>    
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class=" col-lg-6 col-xl-6 align-items-center shadow p-3 mb-5 bg-white rounded">
+            <div class="page-header pb-3 pt-3">
+                <h1 class="text-center ml-5">Plano de Chamada</h1>
             </div>
-            <form action="" method="POST">
-                {% csrf_token %}
-                <div class="row mb-3">
-                    <label for="inputUsername" class="col-sm-2 col-form-label">Username</label>
-                    <input type="text" name="username" class="form-control" id="inputUsername">
+            <div class="container col-lg-8 col-xl-8 mb-5">
+                <div class="row pt-3">
+                    <h3 class="text-left">Login</h3>
                 </div>
-                <div class="row mb-3">
-                    <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
-                    <input type="password" name="password" class="form-control" id="inputPassword3">
+                <div class="dropdown-divider"></div>
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    <div class="row pt-3">
+                        <label for="inputUsername" class="col-sm-2 col-form-label">Usuário</label>
+                        <input type="text" name="username" class="form-control" id="inputUsername">
+                    </div>
+                    <div class="row pt-3">
+                        <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
+                        <input type="password" name="password" class="form-control" id="inputPassword3">
+                    </div>
+                    <div class="row pt-3 pb-3">
+                        <button type="submit" class="btn btn-success btn-block">Acessar</button>
+                    </div>
+                </form>
+                <div class="dropdown-divider "></div>
+                <div class="row justify-content-end">
+                    <a class="align-rigth" href="#">Esqueceu a senha?</a>
                 </div>
-                <div class="row mb-3">
-                    <button type="submit" class="btn btn-success btn-block">Entrar</button>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
 {% endblock body %}
+
+{% block footer%}
+
+<footer>
+    <div class="rigths">
+        <div class="container">
+            <div class="row">
+            <div class="col">
+                <p class="text-center" > {% now 'Y' %} Plano de Chamada. Todos os direitos reservados.</p>
+            </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{% endblock footer%}
 
 
