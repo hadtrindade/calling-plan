@@ -18,6 +18,15 @@
     <script src="{% static 'js/bootstrap.js' %}"></script>
     <script src="{% static 'js/jquery.mask.min.js' %}"></script>
 
+	<style type="text/css">
+		body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: #ebe9e9 !important;
+		}
+    </style>
 
 </head>
 <body>
@@ -54,10 +63,11 @@
                     </a>
                     <div class="dropdown-menu bg-dark border-light" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item text-light" href="{% url 'core:register' %}">Usuário</a>
-                        <a class="dropdown-item text-light" href="{% url 'military:add-military' %}">Cadastro de Militar</a>
-                        <a class="dropdown-item text-light" href="{% url 'military:add-graduation' %}">Cadastro de Posto/Gradução</a>
-                        <a class="dropdown-item text-light" href="{% url 'military:add-subunit' %}">Cadastro de Subunidade</a>
-                        <a class="dropdown-item text-light" href="{% url 'military:add-area' %}">Cadastro de Area</a>
+                        <a class="dropdown-item text-light" href="{% url 'military:add-military' %}">Organização Militar</a>
+                        <a class="dropdown-item text-light" href="{% url 'military:add-military' %}">Militares</a>
+                        <a class="dropdown-item text-light" href="{% url 'military:add-graduation' %}">Posto/Gradução</a>
+                        <a class="dropdown-item text-light" href="{% url 'military:add-subunit' %}">Subunidade</a>
+                        <a class="dropdown-item text-light" href="{% url 'military:add-area' %}">Area do plano</a>
                     </div>
                 </li>
                 {% endif %}

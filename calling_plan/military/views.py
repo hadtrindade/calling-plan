@@ -19,9 +19,9 @@ class MilitaryCreate(CreateView):
 
         context = super().get_context_data(*args, **kwargs)
 
-        context["titulo"] = "Cadastro de Militar"
-        context["botao"] = "Cadastrar"
-        context["icone"] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context["title"] = "Cadastro de Militar"
+        context["button"] = "Cadastrar"
+        context["icon"] = '<i class="fa fa-check" aria-hidden="true"></i>'
 
         return context
 
@@ -38,9 +38,9 @@ class AreaCreate(CreateView):
 
         context = super().get_context_data(*args, **kwargs)
 
-        context["titulo"] = "Cadastro de Area"
-        context["botao"] = "Cadastrar"
-        context["icone"] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context["title"] = "Cadastro de Area"
+        context["button"] = "Cadastrar"
+        context["icon"] = '<i class="fa fa-check" aria-hidden="true"></i>'
 
         return context
 
@@ -57,9 +57,9 @@ class SubUnitCreate(CreateView):
 
         context = super().get_context_data(*args, **kwargs)
 
-        context["titulo"] = "Cadastro de Subunidade"
-        context["botao"] = "Cadastrar"
-        context["icone"] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context["title"] = "Cadastro de Subunidade"
+        context["button"] = "Cadastrar"
+        context["icon"] = '<i class="fa fa-check" aria-hidden="true"></i>'
 
         return context
 
@@ -75,9 +75,9 @@ class GraduationCreate(CreateView):
 
         context = super().get_context_data(*args, **kwargs)
 
-        context["titulo"] = "Cadastro de Posto e Graduação"
-        context["botao"] = "Cadastrar"
-        context["icone"] = '<i class="fa fa-check" aria-hidden="true"></i>'
+        context["title"] = "Cadastro de Posto e Graduação"
+        context["button"] = "Cadastrar"
+        context["icon"] = '<i class="fa fa-check" aria-hidden="true"></i>'
 
         return context
 

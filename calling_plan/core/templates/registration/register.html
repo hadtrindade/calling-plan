@@ -1,27 +1,87 @@
-{% extends  'pages/base.html' %}
+{% extends  'military/form.html' %}
 {% load static %}
+
 {% load crispy_forms_tags %}
-
-
-{% block title %} Plano de Chamada - Cadastro Usuário {% endblock title %}
 
 
 {% block body %}
 
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col col-sm-4 col-md-4 col-lg-4 col-xl-4">
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-sm-4 col-md-7 col-lg-12 col-xl-12 align-items-center shadow p-3 mb-5 bg-white rounded">
             <div class="page-header pt-5">
-                <h3 class="text-center">Casdastro de Usuário<h3>
+                <h1 class="text-center">Cadastro de Usuário</h1>
             </div>
-            <form action="" method="POST" class="row g-3 mt-2 pb-2">
+            <form action="" method="POST">
                 {% csrf_token %}
-                {{ forms|crispy }}
-
-                <div class="col-12">
-                    <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+                <div class="form-row justify-content-center align-items-center">
+                    <div class="form-group col-lg-2 col-xl-2">
+                        <label for="id_username">Usuário</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group col-lg-3 col-xl-3">
+                        <label for="id_graduacao">Primeiro Nome</label>
+                        {{ form.first_name }}
+                    </div>
+                    <div class="form-group col-lg-7 col-xl-6">
+                        <label for="id_nome">Sobrenome</label>
+                        {{ form.last_name }}
+                    </div>
                 </div>
-            </form>            
+                <div class="form-row justify-content-center align-items-center">
+                    <div class="form-group col-lg-4 col-xl-4">
+                        <label for="id_subunidade">Email</label>
+                        {{ form.email }}
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            {{ form.is_active }}
+                            <label class="form-check-label" for="id_chamador">
+                                {{ form.is_active.label }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group justify-content-center align-items-center ml-2">
+                        <div class="form-check ">
+                            {{ form.is_staff }}
+                            <label class="form-check-label" for="id_operacional">
+                                {{ form.is_staff.label }}
+                            </label>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-row justify-content-center align-items-center">
+                    <div class="form-group col-lg-3 col-xl-3">
+                        <label for="id_telefone">{{ form.password1.label }}</label>
+                            {{ form.password1 }}
+                    </div>
+                </div>
+                <div class="form-row justify-content-center align-items-center">
+                    <div class="form-group col-lg-3 col-xl-3 ">
+                        <label for="id_telefone_telegram">{{ form.password2.label }}</label>
+                            {{ form.password2 }}
+                    </div>
+                </div>
+                <div class="form-row justify-content-center align-items-center">
+                    <div class="form-group col-lg-3 col-xl-3">
+                        <button type="submit" class="btn btn-success btn-block">Cadastrar</button>
+                    </div>
+                </div>
+            </form>
+            {% if messages %}
+                    {% for message in messages %}
+                        <script>
+                            $('.alert').alert()
+                        </script>
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{message}}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            </div>
+                    {% endfor %}
+                {% endif %}           
         </div>
     </div>
 </div>
