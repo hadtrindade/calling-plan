@@ -1,8 +1,9 @@
-from django.utils.translation import gettext, gettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth import password_validation
 from django.core.exceptions import ValidationError
+#from django.contrib.auth.views import LoginView
 
 
 class UserCreationForm(forms.ModelForm):
@@ -34,6 +35,7 @@ class UserCreationForm(forms.ModelForm):
         )
     is_staff = forms.BooleanField(
         label=_('staff status'),
+        required=False,
         widget=forms.CheckboxInput(attrs={'class': 'form-check-input'}),
         help_text=_('Designates whether the user can log into this admin site.'),
     )

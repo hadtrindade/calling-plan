@@ -6,23 +6,22 @@
 
 {% block body %}
 
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4">
-            <div class="page-header pt-5">
-                <h1 class="text-center">{{titulo}}</h1>
+<div class="container h-100">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-sm-4 col-md-4 col-lg-4 col-xl-4 align-items-center shadow p-3 mb-5 bg-white rounded">
+            <div class="page-header pt-2">
+                <h1 class="text-center">{{title}}</h1>
             </div>
             <form action="" method="POST">
                 {% csrf_token %}
                 {{form|crispy}}
                <button type="submit" class="btn btn-success btn-block">
                 {% autoescape off %}
-                    {{ icone }}
+                    {{ icon }}
                 {% endautoescape %}
-                    {{ botao }}
+                    {{ button }}
                </button>
-            </form>
-            
+            </form>  
         </div>
     </div>
 </div>

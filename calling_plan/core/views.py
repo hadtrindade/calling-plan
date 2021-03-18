@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 from calling_plan.decorators import unauthenticated_user, allowed_users
+from django.contrib import messages
 
 
 @unauthenticated_user
@@ -16,6 +17,8 @@ def login_view(request):
         if user:
             login(request, user)
             return redirect("pages:home")
+        else:
+            messages.error(request, "Usuário ou senha inváidos.")
 
     return render(request, "registration/login.html")
 
@@ -35,5 +38,7 @@ def register_view(request):
         if form.is_valid():
             form.save()
             return redirect("pages:home")
-    context = {"forms": form}
+        else:
+            messages.error(request, "As senhas não conferem.")
+    context = {"form": form}
     return render(request, "registration/register.html", context=context)
