@@ -24,6 +24,7 @@ urlpatterns = [
     path("", include("calling_plan.pages.urls")),
     path("", include("calling_plan.core.urls")),
     path("", include("calling_plan.military.urls")),
+    path("", include("calling_plan.telegram_bot.urls")),
 ]
 
 
