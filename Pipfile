@@ -13,6 +13,7 @@ collectfast = "*"
 python-decouple = "*"
 django-crispy-forms = "*"
 django-extensions = "*"
+python-telegram-bot = "*"
 
 [dev-packages]
 pytest = "*"
