@@ -1,52 +1,55 @@
-from django.shortcuts import render
-from django.conf.settings import TELEGRAM_TOKEN
+import json
+from django.conf import settings
+from django.shortcuts import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.utils.decorators import method_decorator
-# Create your views here.
+from queue import Queue
 
 from typing import NoReturn
-from telegram import Update
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
+from telegram import Update, Bot
+from telegram.ext import (
+    Dispatcher,
+    CommandHandler,
+    MessageHandler,
+    Filters,
+    CallbackContext,
+)
 
 
-
-def start(update: Update, _: CallbackContext) -> NoReturn:
+def start(update: Update, context: CallbackContext) -> NoReturn:
     """Send a message when the command /start is issued."""
-        update.message.reply_text('Hi!')
+    update.message.reply_text('Hi!')
 
 
-def help_command(update: Update, _: CallbackContext) -> NoReturn:
+def help_command(update: Update, context: CallbackContext) -> NoReturn:
     """Send a message when the command /help is issued."""
     update.message.reply_text('Help!')
 
 
-def echo(update: Update, _: CallbackContext) -> NoReturn:
-    """Echo the user message."""
-    update.message.reply_text(update.message.text)
+def echo(update: Update, context: CallbackContext) -> NoReturn:
+    response_message = "flw vlw"
+    context.bot.send_message(
+        chat_id=update.effective_chat.id, text=response_message
+    )
 
 
 @csrf_exempt
 def telegram_bot(request):
 
-    """Start the bot."""
-    # Create the Updater and pass it your bot's token.
-    updater = Updater("TOKEN")
+    """View bot telegram."""
 
-    # Get the dispatcher to register handlers
-    dispatcher = updater.dispatcher
+    # Create the bot's token.
+    bot = Bot(token=settings.TELEGRAM_TOKEN)
+    update = Update.de_json(json.loads(request.body), bot)
+    print(json.loads(request.body))
+    dispatcher = Dispatcher(bot=bot, update_queue=Queue(), workers=1)
 
     # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
 
     # on noncommand i.e message - echo the message on Telegram
-    dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
-
-    # Start the Bot
-    updater.start_polling()
-
-    # Run the bot until you press Ctrl-C or the process receives SIGINT,
-    # SIGTERM or SIGABRT. This should be used most of the time, since
-    # start_polling() is non-blocking and will stop the bot gracefully.
-    updater.idle()
-
+    dispatcher.add_handler(
+        MessageHandler(Filters.text & ~Filters.command, echo)
+    )
+    dispatcher.process_update(update)
+    return HttpResponse()
