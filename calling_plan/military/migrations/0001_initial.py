@@ -8,55 +8,144 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Area',
+            name="Area",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('area', models.CharField(choices=[('S', 'Sul'), ('N', 'Norte'), ('L', 'Leste'), ('O', 'Oeste'), ('G', 'Guarnição'), ('F', 'Fora da Guarnição')], max_length=1, verbose_name='Área')),
-                ('descricao', models.CharField(max_length=50, unique=True, verbose_name='Descrição')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "area",
+                    models.CharField(
+                        choices=[
+                            ("S", "Sul"),
+                            ("N", "Norte"),
+                            ("L", "Leste"),
+                            ("O", "Oeste"),
+                            ("G", "Guarnição"),
+                            ("F", "Fora da Guarnição"),
+                        ],
+                        max_length=1,
+                        verbose_name="Área",
+                    ),
+                ),
+                (
+                    "descricao",
+                    models.CharField(
+                        max_length=50, unique=True, verbose_name="Descrição"
+                    ),
+                ),
             ],
         ),
         migrations.CreateModel(
-            name='Graduation',
+            name="Graduation",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome', models.CharField(max_length=20, unique=True)),
-                ('sigla', models.CharField(max_length=10, unique=True)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome", models.CharField(max_length=20, unique=True)),
+                ("sigla", models.CharField(max_length=10, unique=True)),
             ],
         ),
         migrations.CreateModel(
-            name='SubUnit',
+            name="SubUnit",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('nome', models.CharField(max_length=100)),
-                ('sigla', models.CharField(max_length=10)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("nome", models.CharField(max_length=100)),
+                ("sigla", models.CharField(max_length=10)),
             ],
         ),
         migrations.CreateModel(
-            name='Military',
+            name="Military",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('identidade', models.CharField(max_length=14)),
-                ('nome', models.CharField(max_length=200)),
-                ('operacional', models.BooleanField(verbose_name='Operacional')),
-                ('telefone', models.CharField(max_length=20)),
-                ('telefone_familia', models.CharField(blank=True, max_length=20, verbose_name='Telefone de Familiar')),
-                ('telefone_telegram', models.CharField(max_length=20, verbose_name='Telegram')),
-                ('telefone_whatsapp', models.CharField(blank=True, max_length=20, verbose_name='Whatsapp')),
-                ('chamador', models.BooleanField(verbose_name='Chamador')),
-                ('rua', models.CharField(max_length=200)),
-                ('bairro', models.CharField(max_length=100)),
-                ('cidade', models.CharField(max_length=100)),
-                ('estado', models.CharField(max_length=100, verbose_name='UF')),
-                ('cep', models.CharField(max_length=10)),
-                ('data_insercao', models.DateField(auto_now_add=True)),
-                ('area', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='military.area')),
-                ('graduacao', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='military.graduation')),
-                ('subunidade', models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='military.subunit')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("identidade", models.CharField(max_length=14)),
+                ("nome", models.CharField(max_length=200)),
+                (
+                    "operacional",
+                    models.BooleanField(verbose_name="Operacional"),
+                ),
+                ("telefone", models.CharField(max_length=20)),
+                (
+                    "telefone_familia",
+                    models.CharField(
+                        blank=True,
+                        max_length=20,
+                        verbose_name="Telefone de Familiar",
+                    ),
+                ),
+                (
+                    "telefone_telegram",
+                    models.CharField(max_length=20, verbose_name="Telegram"),
+                ),
+                (
+                    "telefone_whatsapp",
+                    models.CharField(
+                        blank=True, max_length=20, verbose_name="Whatsapp"
+                    ),
+                ),
+                ("chamador", models.BooleanField(verbose_name="Chamador")),
+                ("rua", models.CharField(max_length=200)),
+                ("bairro", models.CharField(max_length=100)),
+                ("cidade", models.CharField(max_length=100)),
+                (
+                    "estado",
+                    models.CharField(max_length=100, verbose_name="UF"),
+                ),
+                ("cep", models.CharField(max_length=10)),
+                ("data_insercao", models.DateField(auto_now_add=True)),
+                (
+                    "area",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="military.area",
+                    ),
+                ),
+                (
+                    "graduacao",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="military.graduation",
+                    ),
+                ),
+                (
+                    "subunidade",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.PROTECT,
+                        to="military.subunit",
+                    ),
+                ),
             ],
         ),
     ]
