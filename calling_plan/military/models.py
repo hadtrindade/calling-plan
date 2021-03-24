@@ -42,10 +42,7 @@ class Military(models.Model):
 
     identidade = models.CharField(max_length=14)
     nome = models.CharField(max_length=200)
-    graduacao = models.ForeignKey(
-        Graduation,
-        on_delete=models.PROTECT,
-    )
+    graduacao = models.ForeignKey(Graduation, on_delete=models.PROTECT,)
     subunidade = models.ForeignKey(SubUnit, on_delete=models.PROTECT)
     operacional = models.BooleanField(verbose_name=_("Operacional"))
     telefone = models.CharField(max_length=20)
@@ -54,6 +51,9 @@ class Military(models.Model):
     )
     telefone_telegram = models.CharField(
         max_length=20, verbose_name="Telegram"
+    )
+    telegram_id = models.CharField(
+        max_length=30, verbose_name="Telegram Id", blank=True
     )
     telefone_whatsapp = models.CharField(
         max_length=20, verbose_name="Whatsapp", blank=True
