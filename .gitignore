@@ -137,3 +137,7 @@ staticfiles
 bizu.txt
 .vscode/settings.json
 .coverage
+calling_plan/.DS_Store
+calling_plan/military/.DS_Store
+calling_plan/military/templates/.DS_Store
+.DS_Store
