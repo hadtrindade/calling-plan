@@ -9,7 +9,6 @@ clean:
 	rm -rf *egg-info
 	rm -rf *tox/
 	rm -rf docs/_build
-	pip install -e .['dev'] --upgrade --no-cache
 
 test:
 	pipenv run pytest -s --cov=calling_plan
