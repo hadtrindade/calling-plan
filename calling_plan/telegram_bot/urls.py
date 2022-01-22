@@ -1,7 +1,7 @@
-from django.urls import path
-from .views import telegram_bot
 from django.conf import settings
+from django.urls import path
 
+from .views import telegram_bot
 
 app_name = "telegram_bot"
 

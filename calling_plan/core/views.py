@@ -1,10 +1,11 @@
-from django.shortcuts import render
-from .forms import UserCreationForm
-from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required
-from calling_plan.decorators import unauthenticated_user, allowed_users
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+
+from calling_plan.decorators import allowed_users, unauthenticated_user
+
+from .forms import UserCreationForm
 
 
 @unauthenticated_user

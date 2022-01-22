@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Military, SubUnit, Graduation, Area
+
+from .models import Area, Graduation, Military, SubUnit
 
 # Register your models here.
 admin.site.register(Military)

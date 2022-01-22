@@ -1,6 +1,8 @@
 from typing import NoReturn
+
 from telegram import Update
 from telegram.ext import CallbackContext
+
 from calling_plan.military.models import Military
 
 

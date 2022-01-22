@@ -1,17 +1,9 @@
 from django.urls import path
-from .views import (
-    AreaCreate,
-    MilitaryCreate,
-    SubUnitCreate,
-    GraduationCreate,
-    list_military,
-    details_military,
-    edit_military,
-    delete_military,
-    list_subunit,
-    list_graduation,
-    list_area,
-)
+
+from .views import (AreaCreate, GraduationCreate, MilitaryCreate,
+                    SubUnitCreate, delete_military, details_military,
+                    edit_military, list_area, list_graduation, list_military,
+                    list_subunit)
 
 app_name = "military"
 

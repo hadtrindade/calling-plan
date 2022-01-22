@@ -32,8 +32,6 @@ db:
 black:
 	black -l 79 calling_plan
 	isort --recursive calling_plan
-	black -l 79 tests 
-	isort --recursive tests
 
 shell:
 	python manage.py shell_plus
