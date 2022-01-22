@@ -1,16 +1,13 @@
 import json
+from queue import Queue
+
 from django.conf import settings
 from django.shortcuts import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from queue import Queue
-from telegram import Update, Bot
-from telegram.ext import (
-    Dispatcher,
-    CommandHandler,
-    MessageHandler,
-    Filters,
-)
-from .funs_telegram_bot import start, register, help_command, echo
+from telegram import Bot, Update
+from telegram.ext import CommandHandler, Dispatcher, Filters, MessageHandler
+
+from .funs_telegram_bot import echo, help_command, register, start
 
 
 @csrf_exempt

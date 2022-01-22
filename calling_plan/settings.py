@@ -10,12 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
-from pathlib import Path
-from decouple import config, Csv
-from os.path import join
-from dj_database_url import parse
 from functools import partial
+from os.path import join
+from pathlib import Path
 
+from decouple import Csv, config
+from dj_database_url import parse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

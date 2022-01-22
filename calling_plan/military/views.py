@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
-from django.views.generic.edit import CreateView
-from .models import Military, Area, SubUnit, Graduation
-from django.urls import reverse_lazy
-from .forms import MilitaryForm
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
 from django.utils.decorators import method_decorator
+from django.views.generic.edit import CreateView
+
+from .forms import MilitaryForm
+from .models import Area, Graduation, Military, SubUnit
 
 
 @method_decorator(login_required(login_url="core:login"), name="dispatch")
