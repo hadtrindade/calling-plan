@@ -42,7 +42,10 @@ class Military(models.Model):
 
     identidade = models.CharField(max_length=14)
     nome = models.CharField(max_length=200)
-    graduacao = models.ForeignKey(Graduation, on_delete=models.PROTECT,)
+    graduacao = models.ForeignKey(
+        Graduation,
+        on_delete=models.PROTECT,
+    )
     subunidade = models.ForeignKey(SubUnit, on_delete=models.PROTECT)
     operacional = models.BooleanField(verbose_name=_("Operacional"))
     telefone = models.CharField(max_length=20)

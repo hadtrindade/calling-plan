@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class TelegramBotConfig(AppConfig):
-    name = "telegram_bot"
+    name = "calling_plan.telegram_bot"

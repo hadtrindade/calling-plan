@@ -25,10 +25,6 @@ class UserCreationForm(forms.ModelForm):
         label=_("first name"),
         widget=forms.TextInput(attrs={"class": "form-control"}),
     )
-    last_name = forms.CharField(
-        label=_("last name"),
-        widget=forms.TextInput(attrs={"class": "form-control"}),
-    )
     email = forms.EmailField(
         label=_("email address"),
         widget=forms.EmailInput(attrs={"class": "form-control"}),
@@ -39,14 +35,6 @@ class UserCreationForm(forms.ModelForm):
         widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
         help_text=_(
             "Designates whether the user can log into this admin site."
-        ),
-    )
-    is_active = forms.BooleanField(
-        label=_("Active"),
-        widget=forms.CheckboxInput(attrs={"class": "form-check-input"}),
-        help_text=_(
-            "Designates whether this user should be treated as active. "
-            "Unselect this instead of deleting accounts."
         ),
     )
 
@@ -83,10 +71,8 @@ class UserCreationForm(forms.ModelForm):
         fields = [
             "username",
             "first_name",
-            "last_name",
             "email",
             "is_staff",
-            "is_active",
             "password1",
             "password2",
         ]

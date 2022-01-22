@@ -2,9 +2,9 @@
 {% load static %}
 
 {% load crispy_forms_tags %}
+{% block title %} Plano de Chamada - Cadastro {% endblock title %}
 
-
-{% block body %}
+{% block contents %}
 
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
@@ -25,7 +25,7 @@
         </div>
     </div>
 </div>
-{% endblock body %}
+{% endblock contents %}
 
 {% block scripts %}
 <script>
@@ -53,16 +53,18 @@
     const cep = document.querySelector("#id_cep")
 
     const showData = (result) =>{
-        const dict_cep = {
-            id_cep: result['cep'],
-            id_rua: result['logradouro'],
-            id_bairro: result['bairro'],
-            id_cidade: result['localidade'],
-            id_estado: result["uf"]
-        }
-        for(const field in dict_cep){
-            if(document.querySelector("#"+field)){
-                document.querySelector("#"+field).value = dict_cep[field]
+        if (Object.keys(result).length != 1){
+            const dict_cep = {
+                id_cep: result['cep'],
+                id_rua: result['logradouro'],
+                id_bairro: result['bairro'],
+                id_cidade: result['localidade'],
+                id_estado: result["uf"]
+            }
+            for(const field in dict_cep){
+                if(document.querySelector("#"+field)){
+                    document.querySelector("#"+field).value = dict_cep[field]
+                }
             }
         }
     }

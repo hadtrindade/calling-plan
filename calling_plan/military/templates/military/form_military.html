@@ -1,13 +1,14 @@
 {% extends  'military/form.html' %}
 {% load static %}
 
-{% block body %}
+
+{% block contents %}
 
 <div class="container h-100">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-sm-4 col-md-4 col-lg-12 col-xl-12 align-items-center shadow p-3 mb-5 bg-white rounded">
             <div class="page-header pt-5">
-                <h1 class="text-center">{{titulo}}</h1>
+                <h1 class="text-center">{{title}}</h1>
             </div>
             <form action="" method="POST">
                 {% csrf_token %}
@@ -101,4 +102,4 @@
         </div>
     </div>
 </div>
-{% endblock body %}
+{% endblock contents %}

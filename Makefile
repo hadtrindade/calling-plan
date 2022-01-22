@@ -11,22 +11,29 @@ clean:
 	rm -rf docs/_build
 
 test:
-	pipenv run pytest -s --cov=calling_plan
+	pytest -s --cov=calling_plan
 
-django-run:	
+run:	
 	python manage.py runserver
 
-db-postgres:
-	sudo docker run -d \
-		--name bd_test \
+migrate:
+	python manage.py makemigrations
+	python manage.py migrate
+
+db:
+	docker run -d \
+		--name db_dev_calling_plan \
 		-e POSTGRES_PASSWORD=postgres \
     	-e PGDATA=/var/lib/postgresql/data/pgdata \
-    	-v $(pwd)/bd_test:/var/lib/postgresql/data \
+    	--mount type=volume,src=calling_plan,dst=/var/lib/postgresql/data \
 		-p 5432:5432 \
-    	postgres:13.1
+    	postgres
 
 black:
-	black -l79 .
+	black -l 79 calling_plan
+	isort --recursive calling_plan
+	black -l 79 tests 
+	isort --recursive tests
 
 shell:
 	python manage.py shell_plus

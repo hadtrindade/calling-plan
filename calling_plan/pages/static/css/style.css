@@ -1,3 +1,16 @@
-.main-footer{
-    background:rgb(33, 37, 41);
+.footer {
+background:rgb(33, 37, 41);
+}
+
+body,
+    html {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        background: #ebe9e9 !important;
+    }
+
+
+div#id_body {
+    background-color: #fff;
 }

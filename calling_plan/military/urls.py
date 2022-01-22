@@ -20,7 +20,9 @@ urlpatterns = [
     path("add-military/", MilitaryCreate.as_view(), name="add-military"),
     path("add-subunit/", SubUnitCreate.as_view(), name="add-subunit"),
     path(
-        "add-graduation/", GraduationCreate.as_view(), name="add-graduation",
+        "add-graduation/",
+        GraduationCreate.as_view(),
+        name="add-graduation",
     ),
     path("list-military/", list_military, name="list-military"),
     path("list-subunit/", list_subunit, name="list-subunit"),
