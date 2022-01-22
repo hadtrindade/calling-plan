@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class BaseConfig(AppConfig):
-    name = "pages"
+class PagesConfig(AppConfig):
+    name = "calling_plan.pages"

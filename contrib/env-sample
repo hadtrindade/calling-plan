@@ -1,12 +1,20 @@
+#ENVs Django
 DEBUG=False
-SECRET_KEY=Defina sua secret key aqui
+SECRET_KEY=Define of key here.
 ALLOWED_HOSTS=localhost,127.0.0.1
 DATABASE_URL=postgres://postgres:postgres@localhost:5432/postgres
 INTERNAL_IPS=127.0.0.1
 SENTRY_DSN=
 
+#KEY Telegram
+TELEGRAM_TOKEN=secretkey
 
-#configuração do AWS_ACCESS_KEY_ID
+#KEYS AWS_ACCESS_KEY_ID
 AWS_ACCESS_KEY_ID=
 AWS_SECRET_ACCESS_KEY=
 AWS_STORAGE_BUCKET_NAME=
+
+#KEYS Asterisk
+AST_ADDRESS=
+AST_AMI_USERNAME=
+AST_AMI_SECRET=

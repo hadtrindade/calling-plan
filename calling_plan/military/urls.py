@@ -28,7 +28,9 @@ urlpatterns = [
     path("list-subunit/", list_subunit, name="list-subunit"),
     path("list-graduation/", list_graduation, name="list-graduation"),
     path("list-area/", list_area, name="list-area"),
-    path("details-military/<str:pk>/", details_military, name="details-military"),
+    path(
+        "details-military/<str:pk>/", details_military, name="details-military"
+    ),
     path("edit-military/<str:pk>/", edit_military, name="edit-military"),
     path("delete-military/<str:pk>/", delete_military, name="delete-military"),
 ]

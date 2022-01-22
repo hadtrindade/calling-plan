@@ -55,6 +55,9 @@ class Military(models.Model):
     telefone_telegram = models.CharField(
         max_length=20, verbose_name="Telegram"
     )
+    telegram_id = models.CharField(
+        max_length=30, verbose_name="Telegram Id", blank=True
+    )
     telefone_whatsapp = models.CharField(
         max_length=20, verbose_name="Whatsapp", blank=True
     )

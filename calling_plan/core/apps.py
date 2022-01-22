@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class CoreConfig(AppConfig):
-    name = "core"
+    name = "calling_plan.core"

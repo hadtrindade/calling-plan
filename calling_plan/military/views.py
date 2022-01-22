@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 
-@method_decorator(login_required(login_url="core:login"), name='dispatch')
+@method_decorator(login_required(login_url="core:login"), name="dispatch")
 class MilitaryCreate(CreateView):
     model = Military
     form_class = MilitaryForm
@@ -26,7 +26,7 @@ class MilitaryCreate(CreateView):
         return context
 
 
-@method_decorator(login_required(login_url="core:login"), name='dispatch')
+@method_decorator(login_required(login_url="core:login"), name="dispatch")
 class AreaCreate(CreateView):
 
     model = Area
@@ -45,7 +45,7 @@ class AreaCreate(CreateView):
         return context
 
 
-@method_decorator(login_required(login_url="core:login"), name='dispatch')
+@method_decorator(login_required(login_url="core:login"), name="dispatch")
 class SubUnitCreate(CreateView):
 
     model = SubUnit
@@ -64,7 +64,7 @@ class SubUnitCreate(CreateView):
         return context
 
 
-@method_decorator(login_required(login_url="core:login"), name='dispatch')
+@method_decorator(login_required(login_url="core:login"), name="dispatch")
 class GraduationCreate(CreateView):
     model = Graduation
     fields = ["nome", "sigla"]
@@ -120,7 +120,9 @@ def details_military(request, pk):
     }
 
     return render(
-        request, template_name="military/list_military_details.html", context=context
+        request,
+        template_name="military/list_military_details.html",
+        context=context,
     )
 
 
@@ -137,10 +139,7 @@ def edit_military(request, pk):
             form.save()
             return redirect("military:list-military")
 
-    context = {
-        "form": form,
-        "titulo": "Editar Militar"
-    }
+    context = {"form": form, "titulo": "Editar Militar"}
 
     return render(
         request, template_name="military/form_military.html", context=context
